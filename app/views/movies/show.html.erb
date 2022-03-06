@@ -20,5 +20,12 @@
   <%= @movie.is_fav %>
 </p>
 
+<div id="reviews">
+  <h1>Reviews</h1>
+  <!-- The `reviews` method returns an array-like collection, so we can call `each` on it: -->
+  <%= render @movie.reviews %>
+</div>
+
+
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
