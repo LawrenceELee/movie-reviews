@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   # GET /reviews or /reviews.json
   def index
     @reviews = Review.all
+    #@review = Review.all.order("created_at DESC") #this "join" table doesn't seem to have a auto made created_at column
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -57,6 +58,14 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def average
+    @reviews = Review.all
+
+    # automatically returns the last statement, don't have to explicitly return
+    # reviews.sum(0.0) / reviews.size
+    reviews.size
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -67,4 +76,5 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:description, :rating, :user_id, :movie_id)
     end
+
 end
